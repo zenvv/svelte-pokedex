@@ -14,11 +14,3 @@
 body {
 	@apply bg-gray-200 text-gray-800;
 }
-
-h1 {
-	@apply text-3xl font-bold mb-3 tracking-tight scroll-m-20 lg:text-4xl;
-}
-
-p {
-	@apply leading-7 text-balance;
-}
