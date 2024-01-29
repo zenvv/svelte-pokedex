@@ -30,7 +30,7 @@
 
 {#if monster || monster2}
 	<div
-		class="flex items-center w-full h-64 min-h-0 gap-10 p-8 my-8 bg-gray-300 border rounded-md justify-evenly border-gray-400/40"
+		class="flex items-center w-full h-64 min-h-0 gap-10 p-8 my-8 mt-20 bg-gray-300 border rounded-md justify-evenly border-gray-400/40"
 	>
 		{#if monster}
 			<span class="flex overflow-hidden border rounded-md shadow-md border-gray-400/20">
@@ -57,8 +57,10 @@
 {/if}
 
 <span
-	class="sticky top-0 z-50 flex justify-end w-full py-4 mb-8 bg-gray-200 border-b border-gray-300"
+	class="sticky z-50 flex items-end justify-between w-full pt-4 mb-8 bg-gray-200 border-b border-gray-300 top-16"
 >
+	<RegionNav {updateSearchParams} />
+
 	<input
 		type="text"
 		class="sticky top-0 h-full px-4 py-3 text-sm font-bold text-gray-800 border rounded w-80 border-gray-400/50 bg-gray-300/50 placeholder:text-gray-500 placeholder:italic placeholder:font-normal"
@@ -67,7 +69,7 @@
 	/>
 </span>
 
-<div class="grid w-full grid-cols-3 gap-3">
+<div class="grid w-full grid-cols-6 gap-3 mt-20 max-lg:grid-cols-3 max-lg:gap-2 gap-y-5">
 	{#each selectedMonsters as monster (monster.url)}
 		<MonsterCard {monster} {updateSearchParams} />
 	{/each}

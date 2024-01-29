@@ -1,11 +1,21 @@
-<script>
+<script lang="ts">
 	import { generations } from '$lib/generations';
+	import { page } from '$app/stores';
+
+	export let updateSearchParams: (key: string, value: string) => void;
+
+	$: selectedGenerationId = $page.url.searchParams.get('generation_id') || '';
 </script>
 
-<div class="flex flex-col items-end justify-start w-2/3 h-full gap-2">
-	<button class="region-btn active">All</button>
+<div class="flex items-start justify-start w-2/3 h-full gap-2">
+	<a href="/" class={`region-btn ${selectedGenerationId == '' ? 'active' : ''}`}>All</a>
 	{#each generations as generation (generation.id)}
-		<button class="region-btn">{generation.main_region}</button>
+		<button
+			on:click={() => updateSearchParams('generation_id', generation.id.toString())}
+			class={`region-btn ${selectedGenerationId == generation.id.toString() ? 'active' : ''}`}
+		>
+			{generation.main_region}
+		</button>
 	{/each}
 </div>
 
@@ -19,11 +29,11 @@
 		width: 12px;
 		height: 12px;
 		position: absolute;
-		bottom: -6px;
+		top: -6px;
 		right: -6px;
 		z-index: 0;
 		transform: rotate(45deg);
-		@apply bg-red-500;
+		@apply bg-gray-200;
 	}
 
 	.active {
