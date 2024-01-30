@@ -11,15 +11,15 @@
 
 	let searchString: string = '';
 
-	$: selectedMonsters = data.monsters.filter((monster) => {
+	$: selectedMonsters = data.monsters.filter((monster: { name: string }) => {
 		return monster.name.toLowerCase().includes(searchString.toLowerCase());
 	});
 
 	$: monsterId = $page.url.searchParams.get('monsterId');
-	$: monster = data.monsters.find((monster) => monster.id === monsterId);
+	$: monster = data.monsters.find((monster: { id: string | null }) => monster.id === monsterId);
 
 	$: monsterId2 = $page.url.searchParams.get('monsterId2');
-	$: monster2 = data.monsters.find((monster) => monster.id === monsterId2);
+	$: monster2 = data.monsters.find((monster: { id: string | null }) => monster.id === monsterId2);
 
 	const updateSearchParams = (key: string, value: string) => {
 		const searchParams = new URLSearchParams($page.url.searchParams);
@@ -28,7 +28,7 @@
 	};
 </script>
 
-{#if monster || monster2}
+<!-- {#if monster || monster2}
 	<div
 		class="flex items-center w-full h-64 min-h-0 gap-10 p-8 my-8 mt-20 bg-gray-300 border rounded-md justify-evenly border-gray-400/40"
 	>
@@ -54,22 +54,22 @@
 			</span>
 		{/if}
 	</div>
-{/if}
+{/if} -->
 
-<span
-	class="sticky z-50 flex items-end justify-between w-full pt-4 mb-8 bg-gray-200 border-b border-gray-300 top-16"
->
+<span class="flex items-end justify-between w-full pt-4 bg-gray-200 border-b border-gray-300">
 	<RegionNav {updateSearchParams} />
 
 	<input
 		type="text"
-		class="sticky top-0 h-full px-4 py-3 text-sm font-bold text-gray-800 border rounded w-80 border-gray-400/50 bg-gray-300/50 placeholder:text-gray-500 placeholder:italic placeholder:font-normal"
+		class="sticky top-0 h-full px-4 py-3 mb-2 text-sm font-bold text-gray-800 border outline-none w-80 border-gray-400/50 bg-gray-300/50 placeholder:text-gray-500 placeholder:italic placeholder:font-normal focus:border-gray-900"
 		placeholder="Search a pokémon"
 		bind:value={searchString}
 	/>
 </span>
 
-<div class="grid w-full grid-cols-6 gap-3 mt-20 max-lg:grid-cols-3 max-lg:gap-2 gap-y-5">
+<div
+	class="grid w-full max-h-screen grid-cols-6 gap-3 p-3 pb-64 overflow-y-scroll min-h-auto max-lg:grid-cols-3 max-lg:gap-2 gap-y-5 scroll-smooth"
+>
 	{#each selectedMonsters as monster (monster.url)}
 		<MonsterCard {monster} {updateSearchParams} />
 	{/each}

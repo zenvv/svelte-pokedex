@@ -4,10 +4,12 @@
 	import Navbar from '../components/nav/Navbar.svelte';
 </script>
 
-<body class="flex flex-col items-center justify-center w-full max-w-6xl gap-2 mx-auto my-0">
-	<Navbar />
+<body class="w-full h-screen overflow-hidden">
+	<div class="max-w-5xl mx-auto">
+		<Navbar />
 
-	<main class="flex-1 size-full">
-		<slot />
-	</main>
+		<main class="flex-1">
+			<slot />
+		</main>
+	</div>
 </body>

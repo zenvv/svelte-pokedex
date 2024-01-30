@@ -1,32 +1,27 @@
 <script lang="ts">
-	import RegionNav from '../region/RegionNav.svelte';
 	import NavLink from './NavLink.svelte';
 
 	let wsName: string = 'SVELTE POKEDEX';
 </script>
 
 <nav
-	class="fixed top-0 z-[100] flex flex-col items-center justify-center max-w-6xl w-full h-16 gap-4 overflow-hidden text-gray-100 bg-red-500 nav-inset"
+	class="flex items-center justify-between w-full h-auto max-w-6xl gap-4 px-4 overflow-hidden text-gray-100 bg-red-500 nav-inset"
 >
-	<a
-		href="/"
-		class="px-4 py-3 transition-all hover:bg-gray-100/10 active:scale-95 max-md:active:scale-100 max-lg:w-full max-md:bg-gray-800 max-md:hover:bg-gray-800"
-	>
+	<span class="px-4 py-3 select-none max-lg:w-full max-md:bg-gray-800">
 		<h4 class="flex items-center justify-center gap-2 text-lg font-extrabold">
 			<iconify-icon icon="ic:round-catching-pokemon" class="text-2xl align-middle"></iconify-icon>
 			{wsName}
 		</h4>
-	</a>
-
-	<!-- <span class="flex items-center justify-center gap-2 max-md:w-full">
-		<NavLink href="/" name="Pokémons" />
-		<NavLink href="/generations" name="Generations" />
-	</span> -->
+	</span>
+	<span class="flex self-end gap-2">
+		<NavLink href="/" name="Home" />
+		<NavLink href="/my-monsters" name="My monsters" />
+	</span>
 </nav>
 
 <style lang="postcss">
 	.nav-inset {
-		/* position: relative; */
+		position: relative;
 	}
 
 	.nav-inset::after {

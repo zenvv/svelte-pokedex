@@ -8,11 +8,16 @@
 </script>
 
 <div class="flex items-start justify-start w-2/3 h-full gap-2">
-	<a href="/" class={`region-btn ${selectedGenerationId == '' ? 'active' : ''}`}>All</a>
+	<button
+		class="region-btn"
+		class:active={selectedGenerationId == 'all'}
+		on:click={() => updateSearchParams('generation_id', 'all')}>All</button
+	>
 	{#each generations as generation (generation.id)}
 		<button
 			on:click={() => updateSearchParams('generation_id', generation.id.toString())}
-			class={`region-btn ${selectedGenerationId == generation.id.toString() ? 'active' : ''}`}
+			class:active={selectedGenerationId == generation.id.toString()}
+			class="region-btn"
 		>
 			{generation.main_region}
 		</button>
